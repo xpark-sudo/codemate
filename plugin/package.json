@@ -1,0 +1,88 @@
+{
+  "name": "agent-vscode",
+  "displayName": "Codebase Intelligence Agent",
+  "description": "Ask questions about your codebase with an AI Agent (Plan-Search-Reflect-Answer)",
+  "version": "0.1.0",
+  "publisher": "agent",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": ["Chat", "Other"],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "agent-sidebar",
+          "title": "Agent",
+          "icon": "$(hubot)"
+        }
+      ]
+    },
+    "views": {
+      "agent-sidebar": [
+        {
+          "id": "agent.chatView",
+          "name": "Chat",
+          "type": "webview"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "agent.askQuestion",
+        "title": "Agent: Ask Question"
+      },
+      {
+        "command": "agent.explainCode",
+        "title": "Agent: Explain This Code"
+      },
+      {
+        "command": "agent.indexWorkspace",
+        "title": "Agent: Index Workspace"
+      },
+      {
+        "command": "agent.checkStatus",
+        "title": "Agent: Check Index Status"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "agent.explainCode",
+          "group": "agent",
+          "when": "editorHasSelection"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Agent",
+      "properties": {
+        "agent.serverUrl": {
+          "type": "string",
+          "default": "http://localhost:8000",
+          "description": "URL of the Agent server"
+        },
+        "agent.projectId": {
+          "type": "string",
+          "default": "",
+          "description": "Project ID (auto-detected from .agent/config.json)"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "build": "esbuild src/extension.ts --bundle --platform=node --outdir=dist --external:vscode --format=cjs",
+    "dev": "esbuild src/extension.ts --bundle --platform=node --outdir=dist --external:vscode --format=cjs --watch",
+    "package": "npm run build && vsce package"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.85.0",
+    "esbuild": "^0.24.0",
+    "typescript": "^5.6.0"
+  }
+}

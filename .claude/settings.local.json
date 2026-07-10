@@ -1,0 +1,38 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pip install *)",
+      "Bash(python *)",
+      "Bash(curl -s http://localhost:6333)",
+      "Read(//usr/local/bin/**)",
+      "Read(//opt/homebrew/bin/**)",
+      "Bash(/opt/homebrew/bin/python3.13 -m pip install -r requirements.txt)",
+      "Bash(pkill -f \"uvicorn src.main\")",
+      "Bash(pkill -9 -f \"uvicorn\")",
+      "Bash(pkill -9 -f \"watchfiles\")",
+      "Bash(curl -s http://localhost:8000/api/health)",
+      "Bash(curl *)",
+      "Bash(python3 -c ' *)",
+      "Bash(npm install *)",
+      "Bash(npx tsup *)",
+      "Bash(node ../cli/dist/index.js init)",
+      "Bash(node ../cli/dist/index.js status)",
+      "Bash(node ../cli/dist/index.js ask \"What does auth_middleware do?\")",
+      "Bash(node ../cli/dist/index.js index)",
+      "Bash(node ../cli/dist/index.js ask \"login flow?\" --json)",
+      "Bash(npm link *)",
+      "Bash(npm config *)",
+      "Read(//opt/homebrew/lib/node_modules/agent-cli/dist/**)",
+      "Bash(rm -f /opt/homebrew/bin/agent)",
+      "Bash(rm -f /opt/homebrew/Cellar/node/25.9.0_3/bin/agent)",
+      "Bash(npm unlink *)",
+      "Bash(cat)",
+      "Bash(chmod +x /opt/homebrew/bin/agent)",
+      "Bash(agent --version)",
+      "Bash(OPENAI_LOG=debug agent ask \"hello\" --json)",
+      "Bash(lsof -ti:8000)",
+      "Bash(xargs kill *)",
+      "Bash(npx esbuild *)"
+    ]
+  }
+}
